@@ -762,7 +762,15 @@ def open_nursery():
 
 
 class Nursery(metaclass=NoPublicConstructor):
-    """What must exist so that others may live.
+    """Represents a context in which child tasks may be spawned.
+
+    A nursery may be thought of as a resource that must be allocated
+    before splitting the flow of code into multiple branches. To free
+    this resource, the flow of code must converge into a single branch.
+
+    Thus nurseries provide allow for better reasoning of concurrent code
+    by providing a mental shortcut for determining how many branches 
+    exist within the code at a given time.
 
     Attributes:
         parent_task (`Task`):
